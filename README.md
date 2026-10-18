@@ -1,4 +1,4 @@
-# rafiq-prototype
+# Rafiq
 # Rafiq | Prototype
 
 An AI agent that catches member frustration early, hands staff a ready-to-act case, and protects member data throughout the journey.
