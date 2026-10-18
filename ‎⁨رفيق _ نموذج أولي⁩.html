@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>رفيق | نموذج أولي</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#F5F5FA;--card:#fff;--ink:#1B1A4E;--mute:#6A6990;--line:#E2E1F0;--pri:#3B3A9C;--pri-ink:#fff;--ok:#0E9F8E;--warn:#D98A00;--bad:#D6335B;--soft:#ECECF8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14133A;--card:#1E1D54;--ink:#F1F0FF;--mute:#A9A8D3;--line:#34336F;--pri:#7C7BFF;--pri-ink:#14133A;--ok:#2DD4BF;--warn:#F5B942;--bad:#FF6B8B;--soft:#28276A}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#14133A;--card:#1E1D54;--ink:#F1F0FF;--mute:#A9A8D3;--line:#34336F;--pri:#7C7BFF;--pri-ink:#14133A;--ok:#2DD4BF;--warn:#F5B942;--bad:#FF6B8B;--soft:#28276A}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.7 "IBM Plex Sans Arabic",Tahoma,Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 48px}
+header h1{font-size:30px;margin:0;font-weight:700}
+header p{margin:4px 0 0;color:var(--mute);max-width:60ch}
+.tabs{display:flex;gap:6px;margin:20px 0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{background:none;border:0;color:var(--mute);font:inherit;font-weight:500;padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tab[aria-selected=true]{color:var(--ink);border-color:var(--pri)}
+.tab:focus-visible,button:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.badge{background:var(--bad);color:#fff;border-radius:9px;font-size:11px;padding:1px 7px;margin-inline-start:6px}
+.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+@media(max-width:760px){.grid,.two{grid-template-columns:1fr!important}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h2{font-size:16px;margin:0 0 10px}
+.chat{display:flex;flex-direction:column;gap:10px;min-height:300px;max-height:420px;overflow-y:auto}
+.m{max-width:85%;padding:9px 13px;border-radius:14px;font-size:14.5px}
+.m.me{background:var(--soft);align-self:flex-start;border-end-start-radius:4px}
+.m.ag{background:var(--pri);color:var(--pri-ink);align-self:flex-end;border-end-end-radius:4px}
+.m.sys{align-self:center;background:none;color:var(--mute);font-size:13px;border:1px dashed var(--line)}
+.empty{color:var(--mute);margin:auto;text-align:center}
+.btn{background:var(--pri);color:var(--pri-ink);border:0;border-radius:999px;padding:10px 20px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.btn[disabled]{opacity:.5;cursor:default}
+.gauge{text-align:center}
+.gauge svg{width:100%;max-width:260px}
+.num{font-size:44px;font-weight:700;line-height:1;margin-top:-52px}
+.state{font-weight:700;margin-top:6px}
+.sig{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;min-height:30px}
+.chip{background:var(--soft);border-radius:999px;padding:2px 10px;font-size:12.5px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}.row b{font-weight:500;color:var(--mute)}
+.mask{font-variant-numeric:tabular-nums;letter-spacing:1px}
+.reply{background:var(--soft);border-radius:10px;padding:12px;margin:10px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kpi{font-size:28px;font-weight:700}.kpi small{display:block;font-size:12.5px;font-weight:400;color:var(--mute)}
+.bar{margin:9px 0}.bar span{display:flex;justify-content:space-between;font-size:13.5px}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--pri);margin-top:3px}
+.alert{border:1px solid var(--bad);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:14px}
+.log{font-size:13.5px;max-height:240px;overflow-y:auto}
+.log div{padding:6px 0;border-bottom:1px solid var(--line)}
+.log .w{color:var(--warn)}
+.note{color:var(--mute);font-size:12.5px;margin-top:14px}
+.ev{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}.ev em{font-style:normal;font-size:12px;border-radius:999px;padding:1px 10px;white-space:nowrap;height:fit-content}.rk-lo{background:var(--soft);color:var(--ok)}.rk-me{background:var(--soft);color:var(--warn)}.rk-hi{background:var(--bad);color:#fff}
+.meter{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:6px 0 2px}.meter i{display:block;height:100%;width:0;background:var(--ok);transition:width .6s,background .6s}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.qrow{display:flex;gap:12px;align-items:center;justify-content:space-between;width:100%;text-align:start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;font:inherit;color:var(--ink);cursor:pointer;min-height:64px}
+.qrow:hover,.qrow:focus-visible{border-color:var(--pri)}
+.qs{min-width:96px;text-align:center}.qs b{font-size:22px;display:block;line-height:1.2}.qs small{font-size:12px}
+.qm{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}.qm i{display:block;height:100%}
+.sortb{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 14px;min-height:40px;font:inherit;cursor:pointer}.sortb[aria-pressed=true]{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+.new{background:var(--bad);color:#fff;border-radius:9px;font-size:11px;padding:0 7px;margin-inline-start:6px}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:opacity .25s;pointer-events:none}
+#toast.on{opacity:1}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>رفيق</h1>
+<p>وكيل ذكاء اصطناعي يلتقط إحباط العضو مبكرًا، ويسلّم الموظف حالة جاهزة، ويحمي بيانات العضو طوال الرحلة.</p>
+</header>
+
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" aria-selected="true" data-v="v1">١. تجربة العضو</button>
+<button class="tab" role="tab" aria-selected="false" data-v="v2">٢. شاشة الموظف<span class="badge" id="bd" hidden>1</span></button>
+<button class="tab" role="tab" aria-selected="false" data-v="v3">٣. لوحة الإدارة</button>
+<button class="tab" role="tab" aria-selected="false" data-v="v4">٤. الحارس الذكي<span class="badge" id="bd4" hidden>!</span></button>
+</div>
+
+<section id="v1">
+<div class="grid">
+<div class="card">
+<h2>محادثة واتساب مع العضو "فهد"</h2>
+<div class="chat" id="chat" aria-live="polite"><div class="empty">اضغط "شغّل السيناريو" لمشاهدة محادثة تمثيلية.</div></div>
+<div style="margin-top:12px;display:flex;gap:8px"><button class="btn" id="play">شغّل السيناريو</button><button class="btn ghost" id="reset">إعادة</button></div>
+</div>
+<div class="card gauge">
+<h2>عدّاد الإحباط</h2>
+<svg viewBox="0 0 200 110" aria-hidden="true"><path d="M20 100A80 80 0 0 1 180 100" fill="none" stroke="var(--line)" stroke-width="14" stroke-linecap="round"/><path id="arc" d="M20 100A80 80 0 0 1 180 100" fill="none" stroke="var(--ok)" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" style="transition:stroke-dasharray .7s,stroke .7s"/></svg>
+<div class="num" id="score">0</div>
+<div class="state" id="state">بانتظار المحادثة</div>
+<div class="sig" id="sig"></div>
+<p class="note">0-40 الوكيل يحلها · 40-70 يعتذر ويعوّض · 70+ تحويل فوري لموظف</p>
+</div>
+</div>
+</section>
+
+<section id="v2" hidden>
+<div id="qwrap"></div>
+</section>
+
+<section id="v3" hidden>
+<div class="two" style="margin-bottom:16px">
+<div class="card"><div class="kpi" id="k1">٤٢ ثانية<small>متوسط وقت التسليم للموظف</small></div></div>
+<div class="card"><div class="kpi" id="k2">٣<small>أعضاء معرّضون للمغادرة هذا الأسبوع</small></div></div>
+</div>
+<div class="two">
+<div class="card">
+<h2>أسباب الإحباط المتكررة</h2>
+<div class="bar"><span>تأخر التفعيل بعد الدفع<b>38%</b></span><i style="width:38%"></i></div>
+<div class="bar"><span>متابعة بدون رد<b>27%</b></span><i style="width:27%"></i></div>
+<div class="bar"><span>التنقل بين عدة أقسام<b>21%</b></span><i style="width:21%"></i></div>
+<div class="bar"><span>أسباب أخرى<b>14%</b></span><i style="width:14%"></i></div>
+<p class="note">إجراء مقترح: ربط بوابة الدفع بالتفعيل التلقائي للعضوية.</p>
+</div>
+<div class="card">
+<h2>سجل الوصول والتنبيهات</h2>
+<div class="alert"><b>تنبيه:</b> موظف فتح 14 ملف عضو في ساعة بدون حالة مرتبطة.</div>
+<div class="log" id="log"><div>٠٩:١٢ · سارة · فتحت حالة #2041 · الحقول: الاسم، العضوية</div><div>٠٩:٤٠ · خالد · فتح حالة #2043 · الحقول: الاسم، الفعالية</div></div>
+</div>
+</div>
+<p class="note">كل الأرقام في هذي اللوحة بيانات تجريبية لغرض العرض.</p>
+</section>
+</div>
+<div class="wrap" style="padding-top:0"><section id="v4" hidden>
+<div class="card" style="margin-bottom:16px"><h2>قبل النشر: الحارس يفحص نموذج التسجيل</h2>
+<p class="note" style="margin:0 0 10px">يكتشف الحقول الحساسة اللي بلا مبرر، ويقترح أقل بيانات ممكنة، والمسؤول هو اللي يعتمد.</p>
+<div id="ffeed"></div>
+<div class="meter"><i id="fm"></i></div><div class="note" id="fst" style="margin:0">لم يُفحص النموذج بعد.</div>
+<div class="acts"><button class="btn" id="fscan">افحص النموذج</button><button class="btn ghost" id="fapp" disabled>اعتمد التوصيات وأعد الفحص</button></div></div>
+<div class="card" style="margin-bottom:16px"><h2>الحارس الذكي: يراقب الوصول لبيانات الأعضاء لحظة بلحظة</h2>
+<p class="note" style="margin:0 0 10px">القاعدة: كل فتح لملف عضو لازم يرتبط بحالة خدمة. الحارس يقيس الانحراف عن النمط الطبيعي ويرفع تنبيهًا قبل ما تتحول المشكلة لتسريب.</p>
+<button class="btn" id="gplay">شغّل المراقبة</button></div>
+<div class="two">
+<div class="card"><h2>تدفق الوصول المباشر</h2><div id="gfeed"><div class="empty">بانتظار تشغيل المراقبة.</div></div></div>
+<div>
+<div class="card" style="margin-bottom:16px"><h2>مؤشر خطر الموظف: خالد</h2><div class="meter"><i id="gm"></i></div><div id="gs" class="note" style="margin:0">0 / 100 · ملفات بدون حالة: 0</div>
+<div id="galert" hidden><div class="alert" style="margin-top:12px"><b>تنبيه عالي:</b> خالد فتح ملفات أعضاء كثيرة خلال دقائق بدون أي حالة مرتبطة، وهذا خارج نمطه المعتاد.</div>
+<div class="acts"><button class="btn" id="g1">علّق الصلاحية مؤقتًا</button><button class="btn ghost" id="g2">اطلب مبررًا</button><button class="btn ghost" id="g3">تجاهل (يُسجَّل)</button></div></div></div>
+<div class="card"><h2>شفافية للعضو</h2><div class="chat" style="min-height:0"><div class="m ag">أستاذ فهد، استخدمت اسمك وحالة دفعتك فقط لحل التفعيل. لم أستخدم رقم هويتك ولا تاريخ ميلادك.</div></div></div>
+</div></div></section></div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+let running=false,handed=false,done=false;
+const steps=[
+{r:'me',t:'هلا، دفعت تجديد العضوية وما تغيّر شي في حسابي.',s:22,g:['دفعة مسجلة']},
+{r:'ag',t:'أهلًا أستاذ فهد. أتحقق من الدفعة الحين.'},
+{r:'me',t:'تواصلت معكم أمس بنفس الموضوع وما أحد رد علي.',s:51,g:['عبارة: "ما أحد رد"','شكوى سابقة غير محلولة']},
+{r:'ag',t:'أعتذر لك باسم الجمعية. الدفعة ظاهرة عندي لكن التفعيل معلّق، وما أقدر أفعّله بصلاحيتي.'},
+{r:'me',t:'للمرة الثالثة أكرر! عضويتي بتنتهي بكرة وأنا دافع!',s:86,g:['"للمرة الثالثة"','تكرار الطلب','عضوية تنتهي خلال يوم']}
+];
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function bubble(cls,t){const c=$('#chat');if(c.querySelector('.empty'))c.innerHTML='';const d=document.createElement('div');d.className='m '+cls;d.textContent=t;c.appendChild(d);c.scrollTop=c.scrollHeight}
+function setScore(s,sig){
+ const col=s>=70?'var(--bad)':s>=40?'var(--warn)':'var(--ok)';
+ $('#arc').setAttribute('stroke-dasharray',s+' 100');$('#arc').setAttribute('stroke',col);
+ $('#score').textContent=s;
+ $('#state').textContent=s>=70?'تحويل فوري لموظف':s>=40?'اعتذار وحل سريع':'الوكيل يتولى الحل';
+ $('#state').style.color=col;
+ (sig||[]).forEach(x=>{const c=document.createElement('span');c.className='chip';c.textContent=x;$('#sig').appendChild(c)})
+}
+async function play(){
+ if(running||handed)return;running=true;$('#play').disabled=true;$('#chat').innerHTML='';
+ for(const s of steps){await wait(1100);bubble(s.r,s.t);if(s.s!==undefined)setScore(s.s,s.g)}
+ await wait(900);bubble('sys','درجة الإحباط 86. تم تحويل الحالة لنورة (فريق العضويات) مع بطاقة تسليم كاملة.');
+ handed=true;running=false;Q.push(FAHAD);renderQ();
+ addLog('٠٩:٥٨ · وصلت الحالة #2047 لطابور الموظفين · درجة الإحباط 86');toast('وصلت حالة جديدة للطابور: فهد (86)')
+}
+const FAHAD={id:2047,n:'فهد ع.',sc:86,age:1,live:1,issue:'تفعيل العضوية بعد الدفع',sum:'عضوية منتهية قريبًا، الدفعة مسجلة والتفعيل معلّق.',tried:'التحقق من الدفعة، محاولة التفعيل (تحتاج صلاحية موظف).',why:'ثلاث محاولات تواصل خلال يومين بدون حل.',ten:'٣ سنوات · شكوى سابقة واحدة',idn:'10••••••37',dob:'١٩٩٠/٠٤/١٢',reply:'أستاذ فهد، أعتذر لك عن التأخير، وشفت إنك تواصلت ثلاث مرات. فعّلت عضويتك الحين.',act:'فعّل العضوية وأرسل الرد'};
+let Q=[
+{id:2044,n:'عبدالله م.',sc:72,age:41,issue:'استرجاع رسوم عضوية مكررة',sum:'دفع رسوم العضوية مرتين ويطلب استرجاع الدفعة المكررة.',tried:'التحقق من الدفعتين. الوكيل لا يملك صلاحية الاسترجاع.',why:'تواصل مرتين خلال ٣ أيام بدون حل.',ten:'٥ سنوات · بدون شكاوى سابقة',idn:'10••••••18',dob:'١٩٨٣/٠٩/٠٢',reply:'أستاذ عبدالله، أعتذر عن الإزعاج. بدأت استرجاع الدفعة المكررة، وسيصلك تأكيد بذلك.',act:'ابدأ الاسترجاع وأرسل الرد'},
+{id:2045,n:'ريم ك.',sc:78,age:18,issue:'خصم رسم فعالية بدون تأكيد',sum:'خُصم رسم الفعالية ولم يصلها تأكيد الحجز.',tried:'التحقق من العملية وإعادة إرسال التأكيد بدون نجاح.',why:'تواصلت مرتين اليوم ولم يصلها رد.',ten:'سنتان · بدون شكاوى سابقة',idn:'10••••••52',dob:'١٩٩٥/٠١/١٩',reply:'أستاذة ريم، أعتذر عن التأخير. أكّدت حجزك وأرسلت لك التذكرة.',act:'أكّد الحجز وأرسل الرد'}];
+let sortBy='score',openId=null,rvl={};
+const ago=m=>m<2?'الآن':m<60?'منذ '+m+' دقيقة':'منذ '+Math.round(m/60)+' ساعة';
+const lvl=n=>n>=80?['var(--bad)','عاجل']:['var(--warn)','عالي'];
+renderQ();
+function renderQ(){
+ const bd=$('#bd');bd.hidden=!Q.length;bd.textContent=Q.length;
+ const w=$('#qwrap');
+ const c=Q.find(x=>x.id===openId);
+ if(c){
+  const [col,tx]=lvl(c.sc);
+  w.innerHTML=`<div class="card"><button class="btn ghost" data-q="back" style="margin-bottom:12px">← الرجوع للقائمة</button>
+  <h2>حالة #${c.id} · أولوية ${tx} · إحباط ${c.sc}%</h2>
+  <div class="two"><div>
+  <div class="row"><b>الملخص</b><span>${c.sum}</span></div>
+  <div class="row"><b>جرّب الوكيل</b><span>${c.tried}</span></div>
+  <div class="row"><b>سبب الإحباط</b><span>${c.why}</span></div>
+  <div class="row"><b>مدة العضوية</b><span>${c.ten}</span></div></div>
+  <div>
+  <div class="row"><b>الاسم</b><span>${c.n}</span></div>
+  <div class="row"><b>رقم الهوية</b><span class="mask" dir="ltr">${c.idn}</span></div>
+  <div class="row"><b>تاريخ الميلاد</b><span>${rvl[c.id]?c.dob:'مخفي، غير لازم لهذي الحالة <button class="btn ghost" data-q="rv" style="padding:2px 12px;font-size:12.5px">اكشفه (يُسجَّل)</button>'}</span></div>
+  <p class="note">الموظف يشوف فقط ما تحتاجه الحالة، وكل كشف يظهر في سجل الإدارة.</p></div></div>
+  <div class="reply"><b>رد مقترح (نبرة: اعتذار ودفء):</b><br>"${c.reply}"</div>
+  <button class="btn" data-q="act">${c.act}</button></div>`;
+  return}
+ openId=null;
+ const s=[...Q].sort(sortBy=='score'?(a,b)=>b.sc-a.sc:sortBy=='new'?(a,b)=>a.age-b.age:(a,b)=>b.age-a.age);
+ const sb=[['score','الأعلى إحباطًا'],['new','الأحدث'],['old','الأقدم']];
+ w.innerHTML=`<div class="card"><h2>طابور الحالات المحوّلة</h2><p class="note">الحالات مرتبة حسب درجة الإحباط، عشان الأولوية تكون واضحة. اضغط حالة لفتحها.</p>
+ <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" role="group" aria-label="ترتيب الحالات">${sb.map(x=>`<button class="sortb" data-sort="${x[0]}" aria-pressed="${sortBy==x[0]}">${x[1]}</button>`).join('')}</div>
+ ${s.length?s.map(x=>{const [col,tx]=lvl(x.sc);return`<button class="qrow" data-open="${x.id}"><span><b>${x.n}</b> · #${x.id}${x.live&&!x.seen?'<span class="new">جديد</span>':''}<br><small class="note" style="margin:0">${x.issue} · ${ago(x.age)}</small></span><span class="qs" style="color:${col}"><b>${x.sc}%</b><small>${tx}</small><div class="qm"><i style="width:${x.sc}%;background:${col}"></i></div></span></button>`}).join(''):'<div class="empty">لا توجد حالات في الطابور. أحسنت!</div>'}</div>`}
+$('#qwrap').addEventListener('click',e=>{
+ const o=e.target.closest('[data-open]'),so=e.target.closest('[data-sort]'),q=e.target.closest('[data-q]');
+ if(so){sortBy=so.dataset.sort;renderQ();const b=document.querySelector(`[data-sort="${sortBy}"]`);if(b)b.focus();return}
+ if(o){openId=+o.dataset.open;const c=Q.find(x=>x.id===openId);c.seen=1;addLog(`٠٩:٥٩ · نورة · فتحت حالة #${c.id} · الحقول: الاسم، العضوية، الدفعة (الهوية وتاريخ الميلاد مخفيان)`);renderQ();window.scrollTo({top:0});return}
+ if(!q)return;const c=Q.find(x=>x.id===openId);
+ if(q.dataset.q=='back'){openId=null;renderQ()}
+ else if(q.dataset.q=='rv'){rvl[c.id]=1;addLog(`٠٩:٥٩ · نورة · كشفت تاريخ الميلاد في #${c.id} · لم يُذكر سبب`,'w');toast('تم تسجيل الكشف في سجل الوصول');renderQ()}
+ else if(q.dataset.q=='act'){
+  Q=Q.filter(x=>x.id!==c.id);openId=null;renderQ();
+  if(c.live){bubble('ag',c.reply);setTimeout(()=>{bubble('sys','بعد الإغلاق: "انحلّت مشكلتك؟" ← نعم. تم تسجيل النتيجة في لوحة الإدارة.');addLog('١٠:٠١ · نورة · أُغلقت الحالة #2047 · رضا العضو: نعم');$('#k2').firstChild.textContent='٢'},900)}
+  else addLog(`١٠:٠١ · نورة · أُغلقت الحالة #${c.id}`);
+  toast('أُغلقت الحالة وأُرسل الرد للعضو')}});
+function addLog(t,c){const d=document.createElement('div');d.textContent=t;if(c)d.className=c;$('#log').appendChild(d)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2600)}
+function reset(){location.reload()}
+let gr=false;
+const gev=[['سارة','حالة #2041 · الاسم، العضوية','lo','طبيعي',0],['نورة','حالة #2047 · الاسم، الدفعة','lo','طبيعي',0],['خالد','ملف عضو بدون حالة مرتبطة','me','متوسط',1],['خالد','ملف عضو بدون حالة مرتبطة','me','متوسط',2],['خالد','فتح 3 ملفات خلال دقيقة بدون حالة','me','مرتفع',5],['خالد','فتح 8 ملفات بدون حالة + كشف تواريخ ميلاد','hi','عالٍ',14]];
+const gsc=[0,0,18,34,68,94];
+async function gplay(){
+ if(gr)return;gr=true;$('#gplay').disabled=true;$('#gfeed').innerHTML='';
+ for(let i=0;i<gev.length;i++){await wait(1100);const e=gev[i];
+  const d=document.createElement('div');d.className='ev';d.innerHTML='<span><b></b> · </span><em></em>';
+  d.firstChild.lastChild.textContent=e[1];d.firstChild.firstChild.textContent=e[0];d.lastChild.textContent=e[3];d.lastChild.className='rk-'+e[2];
+  $('#gfeed').prepend(d);
+  const s=gsc[i];$('#gm').style.width=s+'%';$('#gm').style.background=s>=70?'var(--bad)':s>=30?'var(--warn)':'var(--ok)';
+  $('#gs').textContent=s+' / 100 · ملفات بدون حالة: '+e[4];}
+ $('#galert').hidden=false;$('#bd4').hidden=false;toast('الحارس رفع تنبيهًا على خالد');
+ addLog('١٠:٠٧ · الحارس · تنبيه عالي على خالد: 14 ملف بدون حالة','w');
+}
+function gact(t,l){$('#galert').querySelector('.acts').innerHTML='<b>'+t+'</b>';$('#bd4').hidden=true;addLog('١٠:٠٨ · الإدارة · '+l+' (خالد)');toast(t)}
+const ff=[['الاسم الكامل',0],['رقم الجوال',0],['رقم الهوية الوطنية',2,'يُجمع بدون غرض موضّح','نطلب آخر 4 أرقام فقط'],['تاريخ الميلاد',1,'غير لازم لإصدار العضوية','نستبدله بالفئة العمرية'],['صورة الهوية',2,'مرفق حساس بلا مبرر','نحذف الحقل'],['البريد الإلكتروني',0]];
+let fs=0;
+function frender(){
+ const el=$('#ffeed');el.innerHTML='';
+ ff.forEach(f=>{const d=document.createElement('div');d.className='ev';const a=document.createElement('span'),b=document.createElement('em');
+  const bad=fs==1&&f[1]>0,fx=fs==2&&f[1]>0;
+  a.textContent=f[0]+(bad?': '+f[2]+' ← '+f[3]:'')+(fx?': عُدّل، '+f[3]:'');
+  b.textContent=bad?(f[1]==2?'عالٍ':'متوسط'):fx?'معالج':fs?'سليم':'—';
+  b.className=bad?(f[1]==2?'hi':'me'):'lo';d.append(a,b);el.appendChild(d)});
+ const s=fs==1?72:fs==2?8:0;$('#fm').style.width=s+'%';$('#fm').style.background=s>=50?'var(--bad)':s>0?'var(--warn)':'var(--ok)';
+ $('#fst').textContent=fs==0?'لم يُفحص النموذج بعد.':fs==1?'درجة المخاطر 72 · 3 حقول تحتاج مراجعة':'أُعيد الفحص: الدرجة 8 · عولجت 3 مخاطر، والباقي مبرر نظامي لآخر 4 أرقام يحدده المسؤول';
+}
+frender();
+$('#fscan').onclick=()=>{fs=1;frender();$('#fapp').disabled=false;toast('اكتشف الحارس 3 مخاطر في النموذج')};
+$('#fapp').onclick=()=>{fs=2;frender();$('#fapp').disabled=true;addLog('١٠:٠٣ · المسؤول · اعتمد تعديلات نموذج التسجيل (3 حقول)');toast('اعتُمدت التعديلات وأُعيد الفحص')};
+$('#gplay').onclick=gplay;
+$('#g1').onclick=()=>gact('تم تعليق صلاحية خالد مؤقتًا','تعليق الصلاحية');
+$('#g2').onclick=()=>gact('أُرسل طلب مبرر لخالد','طلب مبرر');
+$('#g3').onclick=()=>gact('تم التجاهل وسُجّل القرار','تجاهل التنبيه');
+$('#play').onclick=play;$('#reset').onclick=reset;
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===b));
+ ['v1','v2','v3','v4'].forEach(v=>$('#'+v).hidden=v!==b.dataset.v)
+});
+</script>
+</body>
+</html>
